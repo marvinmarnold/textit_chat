@@ -59,7 +59,13 @@ class Message < ActiveRecord::Base
   end
 
   def textit_token
-    to.match(/\+44/).present? ? Rails.application.secrets.textit_token_uk : Rails.application.secrets.textit_token_us
+    if to.match(/\+44/).present?
+      return Rails.application.secrets.textit_token_uk
+    elsif to.match(/\+52/).present?
+      return Rails.application.secrets.textit_token_mx
+    else
+      return Rails.application.secrets.textit_token_us
+    end
   end
 
   def self.new_from_chat(params, user)
