@@ -62,3 +62,7 @@ gem "pundit"
 gem 'paper_trail'
 
 gem 'country_select'
+
+group :assets do
+  gem 'sass-rails'
+end
